@@ -1,0 +1,119 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+?><!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="utf-8">
+	<title>MtrackSeguros - Seguros</title>
+	<?php
+		$this->load->helper('css');
+		$this->load->helper('login');
+		$this->load->helper('pesquisa_veiculo_ajax');
+		$this->load->helper('money');
+	?>
+</head>
+<body>
+	<?php $this->load->helper('menu'); ?>
+	<div class="container-fluid" >
+		<div class="row">
+			<br>
+			<div class="panel panel-default">
+				<header class="panel-heading">
+					<strong>Efetivar Venda - Retorno API Usebens</strong>
+					<a href="<?php echo base_url('cotacao') ?>">
+						<!-- <button type="button" class="btn btn-info btn-xs pull-right">Pesquisar outro cliente</button> -->
+					</a>
+			  	</header>
+				<div class="panel-body">
+	                 <!-- Mensagem de alerta -->
+	                 <?php if ($alerta != NULL){ ?>
+					 <div class="alert alert-<?php echo $alerta["class"]; ?> alert-block fade in">
+					 <?php echo $alerta["mensagem"];  ?>
+					 	<button data-dismiss="alert" class="close close-sm" type="button"><i class="icon-remove"></i></button>
+					 </div>
+					 <?php } ?>
+					 <!-- Fim mensagem de alerta -->					
+					 <div class="col-sm-9 col-md-9"> 
+						<form action="<?php echo base_url('cotacao/gravar_venda') ?>" method="post" id="formulario_cotacao" >
+							<div class="row">
+								<?php 
+								/* echo '<pre>';	
+								print_r($retornos);
+								echo '</pre>'; */
+								if ($acao === 'VENDA')
+								{
+									$id_revenda 		= $retornos->identificacao->attributes()->id_revenda;
+									$nm_usuario 		= $retornos->identificacao->attributes()->nm_usuario;
+									$nr_cotacao_i4pro 	= $retornos->identificacao->efetivar_venda_auto_configuravel->attributes()->nr_cotacao_i4pro;
+									$id_proposta 		= $retornos->identificacao->efetivar_venda_auto_configuravel->attributes()->id_proposta;
+									$id_apolice			= $retornos->identificacao->efetivar_venda_auto_configuravel->attributes()->id_apolice;
+									$cd_apolice			= $retornos->identificacao->efetivar_venda_auto_configuravel->attributes()->cd_apolice;
+									$id_endosso			= $retornos->identificacao->efetivar_venda_auto_configuravel->attributes()->id_endosso;
+								}
+								else 
+								{
+									$id_revenda 		= $retornos['id_revenda'];
+									$nm_usuario 		= $retornos['nm_usuario'];
+									$nr_cotacao_i4pro	= $retornos['nr_cotacao_i4pro'];
+									$id_proposta 		= $retornos['id_proposta'];
+									$id_apolice			= $retornos['id_apolice'];
+									$cd_apolice			= $retornos['cd_apolice'];
+									$id_endosso 		= $retornos['id_endosso'];
+								}
+								//exit();
+								?>
+								<div class="form-group col-xs-12 col-sm-3 col-md-3">
+									<label for="id_revenda">Código revenda</label>
+									<input type="text" class="form-control" id="id_revenda" name="id_revenda" value="<?php echo $id_revenda ?>" readonly="readonly" >
+								</div>							
+								<div class="form-group col-xs-12 col-sm-3 col-md-3">
+									<label for="nm_usuario">Usuário</label>
+									<input type="text" class="form-control" id="nm_usuario" name="nm_usuario" value="<?php echo $nm_usuario ?>" readonly="readonly" >
+								</div>
+								<div class="form-group col-xs-12 col-sm-3 col-md-3">
+									<label for="id_endosso">ID Endosso</label>
+									<input type="text"  class="form-control" id="id_endosso" name="id_endosso" value="<?php echo $id_endosso ?>" readonly="readonly" >
+								</div>						
+							</div>
+							<div class="row">
+								<div class="form-group col-xs-12 col-sm-3 col-md-3">
+									<label for="nr_cotacao_i4pro">Nº Cotação</label>
+									<input type="text" class="form-control" id="nr_cotacao_i4pro" name="nr_cotacao_i4pro" value="<?php echo $nr_cotacao_i4pro ?>" readonly="readonly" >
+								</div>
+								<div class="form-group col-xs-12 col-sm-3 col-md-3">
+									<label for="cd_proposta">Código Proposta</label>
+									<input type="text" class="form-control" id="cd_proposta" name="cd_proposta" value="<?php echo $id_proposta ?>" readonly="readonly" >
+								</div>
+								<div class="form-group col-xs-12 col-sm-3 col-md-3">
+									<label for="id_apolice">ID Apólice</label>
+									<input type="text" class="form-control" id="id_apolice" name="id_apolice" value="<?php echo $id_apolice ?>" readonly="readonly" >
+								</div>
+								<div class="form-group col-xs-12 col-sm-3 col-md-3">
+									<label for="cd_apolice">Cod. Apólice</label>
+									<input type="text" class="form-control" id="cd_apolice" name="cd_apolice" value="<?php echo $cd_apolice ?>" readonly="readonly" >
+								</div>
+							</div>
+							<div class="row">
+								
+							</div>
+							<hr>							
+							<div class="row">
+							<div class="col-lg-9 col-sm-9">
+									<div class="form-group">
+										<?php 
+										$campo  = ($st === 'GRAVOU' || $nm_usuario === '')? ' class="btn btn-default" disabled="disabled" ' : 'class="btn btn-primary"'  
+										?>										
+										<button type="submit" id="cadastrar" name="cadastrar" value="cadastrar" <?php echo $campo ?>  >Gravar venda</button>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	<?php $this->load->helper('js'); ?>
+</body>
+</html>

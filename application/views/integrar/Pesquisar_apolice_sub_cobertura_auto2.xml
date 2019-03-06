@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:i4p="http://localhost/I4ProWebService">
+   <soap:Header/>
+   <soap:Body>
+      <i4p:ExecutarXML>
+         <!--Optional:-->
+         <i4p:Servico>PesquisarApoliceSubCoberturaAuto</i4p:Servico>
+         <!--Optional:-->
+         <i4p:conteudoXML>
+ 			<i4proerp>
+				<pesquisar_apolice_sub_cobertura_auto
+					id_revenda = "1033597"
+					nr_ramo = "31"
+					id_apolice = "149947"
+					id_sub = "157624"
+					nm_usuario = "ghlima" />
+			</i4proerp>
+         </i4p:conteudoXML>
+      </i4p:ExecutarXML>
+   </soap:Body>
+</soap:Envelope>
