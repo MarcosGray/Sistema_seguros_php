@@ -1,4 +1,4 @@
-<?php
+s<?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /*
@@ -27,15 +27,15 @@ $plataforma = 'DEV';
 
 if ($plataforma === 'DEV')
 {
-	$caminho = 'http://localhost/mtrackseguros/';
+	$caminho = 'http://localhost/empresaseguros/';
 }
 elseif ($plataforma === 'TST')
 {
-	$caminho = 'http://sivendi.com.br/mtrackseguros/';
+	$caminho = 'http://sivendi.com.br/nomeempresa/';
 }
 elseif ($plataforma === 'PRO')
 {
-	$caminho = 'http://multtrack.com.br/mtrackseguros/';
+	$caminho = 'http://empresa.com.br/';
 }
 
 $config['base_url'] = $caminho;
